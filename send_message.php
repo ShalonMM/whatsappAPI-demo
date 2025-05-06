@@ -4,8 +4,8 @@
 require_once 'vendor/autoload.php';
 use Twilio\Rest\Client;
 
-$sid = 'YOUR_TWILIO_ACCOUNT_SID';
-$token = 'YOUR_TWILIO_AUTH_TOKEN';
+$sid = 'AC13345d0dd9e0333934b90c46ce077e6b';
+$token = '3d291b75d14812db32cccb460255b032';
 $twilio = new Client($sid, $token);
 
 $to = $_POST['to'];
@@ -15,7 +15,7 @@ try {
     $message = $twilio->messages->create(
         "whatsapp:$to",
         [
-            "from" => "whatsapp:YOUR_TWILIO_WHATSAPP_NUMBER",
+            "from" => "whatsapp:+12283728918",
             "body" => $body
         ]
     );
