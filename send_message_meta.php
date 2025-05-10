@@ -2,8 +2,8 @@
 // send_message.php
 header('Content-Type: application/json');
 
-$access_token = 'YOUR_PERMANENT_ACCESS_TOKEN'; // Replace with your Meta access token
-$phone_number_id = 'YOUR_PHONE_NUMBER_ID'; // Replace with your WABA phone number ID
+$access_token = 'EAAJeGGGWnYIBOZCEgl2y8oGW0wed6xSSwr7V23bcULyl63UL3tfk5fcM5T3I2Ko9YYujZA6P6cZChLdmOBR2wgEhiOZCnw4XwaKz44OgaZCIXICsckGkXGFF6eFdSwhCMgk005cZBcUkk7ZAmig5xEEHnTirlcxpvWYDS6tWQ7MEwrZBolYSf8Eqxb7BNTKJUISE5yKnr83nTSeVEzOESdC8nuoH8UGp8J8JIHab'; // Replace with your Meta access token
+$phone_number_id = '634297469766679'; // Replace with your WABA phone number ID
 $to = $_POST['to'];
 $body = $_POST['body'];
 
