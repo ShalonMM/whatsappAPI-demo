@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 // Webhook verification
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $verify_token = 'YOUR_WEBHOOK_VERIFY_TOKEN'; // Set this in Meta Developer Portal
+    $verify_token = 'HelloWorld'; // Set this in Meta Developer Portal
     if (isset($_GET['hub_verify_token']) && $_GET['hub_verify_token'] === $verify_token) {
         echo $_GET['hub_challenge'];
         exit;
