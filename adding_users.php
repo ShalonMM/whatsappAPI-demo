@@ -1,3 +1,8 @@
+/*
+ * This script adds a new user to the database with a hashed password.
+ * Make sure to run this script only once to avoid duplicate entries.
+ */
+
 <?php
 require 'db.php';
 
