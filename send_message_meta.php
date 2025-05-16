@@ -1,6 +1,18 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Content-Type: application/json');
+    http_response_code(403);
+    echo json_encode(['success' => false, 'error' => 'Unauthorized']);
+    exit;
+}
 // send_message.php
 header('Content-Type: application/json');
+require_once __DIR__ . '/vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 $access_token = 'EAAJeGGGWnYIBOykonSfYaFTuCI609hsT820BElFpOjrq4ITGdiNRnHAbKtrE1wX9lFXCRmOJ8apDTVJGpx1RFFwaZADSmvkZCRCpSIFkRDz1JPf1cgbbZCmTH0NbGtnsbbtiTYU9awY4aZBbhgeZBd18ZCjyfo8VcXFElHVxHbZAuoTYS184P5eo35ZBGLxTrB3ZCnWFkaUiMZCvDuh6nHDbD6cmfzQ3tcuxYw3YZB6'; // Replace with your Meta access token
 $phone_number_id = '634297469766679'; // Replace with your WABA phone number ID
