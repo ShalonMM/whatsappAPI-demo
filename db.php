@@ -1,4 +1,18 @@
 <?php
+
+$host = 'localhost'; // Usually localhost
+$dbname = 'whatsapp-demo'; // Database name
+$username = 'root'; // Replace with your database username
+$password = ''; // Replace with your database password
+
+// try {
+//     $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+//     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+// } catch (PDOException $e) {
+//     die("Connection failed: " . $e->getMessage());
+// }
+
 require_once __DIR__ . '/vendor/autoload.php';
 use Dotenv\Dotenv;
 

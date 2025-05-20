@@ -1,0 +1,45 @@
+#These are Apache servers. Are commented but remove the # if needed
+
+
+# .htaccess for WhatsApp Webhook Server
+
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Set PHP version if needed (uncomment if required)
+# AddHandler application/x-httpd-php74 .php
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "DENY"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect .env file
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect logs directory
+<FilesMatch "^logs/">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# PHP settings for error handling and increased limits
+# (uncomment if you have permission to set these in .htaccess)
+# php_flag display_errors off
+# php_value post_max_size 8M
+# php_value upload_max_filesize 8M
+# php_value max_execution_time 60
+# php_value max_input_time 60
+# php_value memory_limit 128M
