@@ -1,8 +1,8 @@
 -- Create the database
-CREATE DATABASE IF NOT EXISTS whatsapp-demo;
+CREATE DATABASE IF NOT EXISTS whatsappdemo;
 
 -- Use the database
-USE whatsapp-demo;
+USE whatsappdemo;
 
 -- Create the users table
 CREATE TABLE IF NOT EXISTS users (

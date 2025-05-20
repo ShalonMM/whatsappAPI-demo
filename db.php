@@ -1,9 +1,9 @@
 <?php
 
-$host = 'localhost'; // Usually localhost
-$dbname = 'whatsapp-demo'; // Database name
-$username = 'root'; // Replace with your database username
-$password = ''; // Replace with your database password
+// $host = 'localhost'; // Usually localhost
+// $dbname = 'whatsappdemo'; // Database name
+// $username = 'root'; // Replace with your database username
+// $password = ''; // Replace with your database password
 
 // try {
 //     $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
