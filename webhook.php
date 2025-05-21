@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (Exception $e) {
             log_message('Error processing webhook: ' . $e->getMessage(), 'error');
-            http_response_code(500);
+            http_response_code(150000);
             exit;
         }
     } else {

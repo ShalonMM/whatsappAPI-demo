@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>WhatsApp Business API Demo</title>
@@ -55,6 +55,89 @@ if (!isset($_SESSION['user_id'])) {
         }
         loadMessages();
         setInterval(loadMessages, 5000); // Refresh every 5 seconds
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Business API Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #F7F7F7 0%, #E5E7EB 100%);
+        }
+        .message-card {
+            transition: box-shadow 0.2s;
+        }
+        .message-card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary {
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="container max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-sm">
+        <h1 class="text-2xl font-medium text-center text-gray-800 py-4 rounded-t-lg header-bg">WhatsApp Business API Demo</h1>
+        <div class="mt-6">
+            <div class="mb-6">
+                <label for="to" class="block text-sm font-medium text-gray-600 mb-2">Recipient WhatsApp Number (+1234567890):</label>
+                <input type="text" id="to" placeholder="+1234567890" class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400">
+            </div>
+            <div class="mb-6">
+                <label for="body" class="block text-sm font-medium text-gray-600 mb-2">Message:</label>
+                <textarea id="body" rows="4" placeholder="Type your message here" class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-400"></textarea>
+            </div>
+            <button onclick="sendMessage()" class="btn-primary w-full py-3 bg-gray-600 text-white rounded-lg font-medium text-sm">Send Message</button>
+        </div>
+        <div id="messages" class="mt-8">
+            <h3 class="text-lg font-medium text-gray-700 mb-4">Received Messages</h3>
+            <div id="message-list" class="space-y-3"></div>
+        </div>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const to = document.getElementById('to').value;
+            const body = document.getElementById('body').value;
+            const response = await fetch('send_message.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `to=${encodeURIComponent(to)}&body=${encodeURIComponent(body)}`
+            });
+            const result = await response.json();
+            alert(result.success ? 'Message sent!' : `Error: ${result.error}`);
+        }
+
+        async function fetchMessages() {
+            const response = await fetch('get_messages.php');
+            const messages = await response.json();
+            const messageList = document.getElementById('message-list');
+            messageList.innerHTML = '';
+            messages.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = 'message-card p-4 bg-white border border-gray-100 rounded-lg';
+                div.innerHTML = `<strong class="text-gray-700">From: ${msg.from}</strong><br><p class="text-gray-600 text-sm">${msg.body}</p><br><small class="text-gray-400 text-xs">${msg.timestamp}</small>`;
+                messageList.appendChild(div);
+            });
+        }
+
+        // Poll for new messages every 5 seconds.. adjust this
+        setInterval(fetchMessages, 150000);
+        fetchMessages(); // Initial fetch
     </script>
 </body>
 </html>
